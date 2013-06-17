@@ -1,0 +1,340 @@
+
+
+{{{id=6|
+threejsdir="https://raw.github.com/mrdoob/three.js/master"
+threexjsdir='http://sage.math.washington.edu/home/jason/threejsboilerplate/vendor/threex'
+
+html("""
+<script src="%(dir)s/build/Three.js"></script>
+<script src="%(dir)s/examples/js/loaders/OBJLoader.js"></script>
+<script src="http://sage.math.washington.edu/home/jason/three.js/tinytrackball/TinyTrackballControls.js"></script>
+"""%{'dir':threejsdir,'xdir':threexjsdir})
+# TinyTrackballControls comes from http://www.janthor.com/lib/TinyTrackballControls.js
+
+notused="""
+<script src="%(xdir)s/THREEx.screenshot.js"></script>
+<script src="%(xdir)s/THREEx.FullScreen.js"></script>
+<script src="%(xdir)s/THREEx.WindowResize.js"></script>
+"""
+///
+<html><font color='black'>
+<script src="https://raw.github.com/mrdoob/three.js/master/build/Three.js"></script>
+<script src="https://raw.github.com/mrdoob/three.js/master/examples/js/loaders/OBJLoader.js"></script>
+<script src="http://sage.math.washington.edu/home/jason/three.js/tinytrackball/TinyTrackballControls.js"></script>
+</font></html>
+}}}
+
+{{{id=17|
+%auto
+WORKSHEET_URL='http://demo.sagenb.org/home/jason3/41/'
+def draw_plot(p):
+    from uuid import uuid4
+    uuid = str(uuid4())
+    filename=uuid+'.obj'
+    with open(filename,'w') as f:
+        f.write(p.obj())
+
+    html("""
+    <div id="plot-%(uuid)s" style="width:700px;height:400px;border:solid 1px"></div>
+    <script>
+    setTimeout(function() {
+    // check capabilities, and start if sufficient
+    var haswebgl = (function() {try {return !! window.WebGLRenderingContext && 
+            !! document.createElement('canvas').getContext('experimental-webgl');}
+            catch(e){return false;}})();
+            
+    var hascanvas = !! window.CanvasRenderingContext2D;
+    
+    if(hascanvas) {
+        var contextR, contextW;
+        document.addEventListener( "DOMContentLoaded", init, false);
+    }
+    
+    var item = {};
+    function init() {
+        /* spawns the objects, scenes, cameras, renderers etc. */
+            // set the scene
+            var width = 700;
+            var height=400;
+            if (haswebgl) {
+                //item.renderer = new THREE.WebGLRenderer();
+                item.renderer = new THREE.WebGLRenderer({antialias:true});
+            } else {
+                item.renderer = new THREE.CanvasRenderer();
+            }
+            item.renderer.setSize(width,height);
+            item.scene = new THREE.Scene();
+            item.camera = new THREE.PerspectiveCamera(45, width/height, 2, 1000);
+            item.camera.position = new THREE.Vector3(10,10,10);
+            item.scene.add(item.camera);
+            item.controls = new THREE.TinyTrackballControls(item.camera, item.renderer.domElement);
+            item.controls.target.set(0, 0, 0);
+            //item.controls.noZoom = true;
+            //item.controls.noPan = true;
+            var loader = new THREE.OBJLoader();
+            loader.load( "%(url)s", function ( object ) {
+                myobj=object.children[0];
+                var mesh = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, 
+                   [new THREE.MeshBasicMaterial({color: 0x6666ff}),
+                    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true, transparent: true, opacity: 0.5 } )] );
+                item.scene.add(mesh);
+             });
+    
+            // add the renderer to the document
+            div=document.getElementById("plot-%(uuid)s")
+            if (div.firstChild) {
+                div.replaceChild(item.renderer.domElement,div.firstChild);
+            } else {
+                div.appendChild(item.renderer.domElement);
+            }
+        animate();
+    }
+    
+    function animate() {
+        /* one animation tick */
+        requestAnimationFrame(animate);
+        item.controls.update();
+        myrender();
+    }
+    
+    function myrender () {
+        /* renders our little scene */
+        item.renderer.render(item.scene, item.camera);
+    }
+    init()
+    },100);
+    """%{'url':WORKSHEET_URL+'cells/'+str(sagenb.notebook.interact.SAGE_CELL_ID)+'/'+filename,'uuid':uuid}+"</script>")
+///
+}}}
+
+{{{id=15|
+var('x,y')
+draw_plot(plot3d(sin(x*y),(x,-6,6),(y,-6,6)))
+///
+<html><font color='black'>
+    <div id="plot-57c0f90d-77f0-4c7f-bf85-54f7d3675a44" style="width:700px;height:400px;border:solid 1px"></div>
+    <script>
+    setTimeout(function() {
+    // check capabilities, and start if sufficient
+    var haswebgl = (function() {try {return !! window.WebGLRenderingContext && 
+            !! document.createElement('canvas').getContext('experimental-webgl');}
+            catch(e){return false;}})();
+            
+    var hascanvas = !! window.CanvasRenderingContext2D;
+    
+    if(hascanvas) {
+        var contextR, contextW;
+        document.addEventListener( "DOMContentLoaded", init, false);
+    }
+    
+    var item = {};
+    function init() {
+        /* spawns the objects, scenes, cameras, renderers etc. */
+            // set the scene
+            var width = 700;
+            var height=400;
+            if (haswebgl) {
+                //item.renderer = new THREE.WebGLRenderer();
+                item.renderer = new THREE.WebGLRenderer({antialias:true});
+            } else {
+                item.renderer = new THREE.CanvasRenderer();
+            }
+            item.renderer.setSize(width,height);
+            item.scene = new THREE.Scene();
+            item.camera = new THREE.PerspectiveCamera(45, width/height, 2, 1000);
+            item.camera.position = new THREE.Vector3(10,10,10);
+            item.scene.add(item.camera);
+            item.controls = new THREE.TinyTrackballControls(item.camera, item.renderer.domElement);
+            item.controls.target.set(0, 0, 0);
+            //item.controls.noZoom = true;
+            //item.controls.noPan = true;
+            var loader = new THREE.OBJLoader();
+            loader.load( "http://demo.sagenb.org/home/jason3/41/cells/15/57c0f90d-77f0-4c7f-bf85-54f7d3675a44.obj", function ( object ) {
+                myobj=object.children[0];
+                var mesh = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, 
+                   [new THREE.MeshBasicMaterial({color: 0x6666ff}),
+                    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true, transparent: true, opacity: 0.5 } )] );
+                item.scene.add(mesh);
+             });
+    
+            // add the renderer to the document
+            div=document.getElementById("plot-57c0f90d-77f0-4c7f-bf85-54f7d3675a44")
+            if (div.firstChild) {
+                div.replaceChild(item.renderer.domElement,div.firstChild);
+            } else {
+                div.appendChild(item.renderer.domElement);
+            }
+        animate();
+    }
+    
+    function animate() {
+        /* one animation tick */
+        requestAnimationFrame(animate);
+        item.controls.update();
+        myrender();
+    }
+    
+    function myrender () {
+        /* renders our little scene */
+        item.renderer.render(item.scene, item.camera);
+    }
+    init()
+    },100);
+    </script></font></html>
+}}}
+
+{{{id=19|
+draw_plot(plot3d(e^(-x^2-y^2),(x,-6,6),(y,-6,6)))
+///
+<html><font color='black'>
+    <div id="plot-7d896242-71d8-474f-a706-9735ba721d12" style="width:700px;height:400px;border:solid 1px"></div>
+    <script>
+    setTimeout(function() {
+    // check capabilities, and start if sufficient
+    var haswebgl = (function() {try {return !! window.WebGLRenderingContext && 
+            !! document.createElement('canvas').getContext('experimental-webgl');}
+            catch(e){return false;}})();
+            
+    var hascanvas = !! window.CanvasRenderingContext2D;
+    
+    if(hascanvas) {
+        var contextR, contextW;
+        document.addEventListener( "DOMContentLoaded", init, false);
+    }
+    
+    var item = {};
+    function init() {
+        /* spawns the objects, scenes, cameras, renderers etc. */
+            // set the scene
+            var width = 700;
+            var height=400;
+            if (haswebgl) {
+                //item.renderer = new THREE.WebGLRenderer();
+                item.renderer = new THREE.WebGLRenderer({antialias:true});
+            } else {
+                item.renderer = new THREE.CanvasRenderer();
+            }
+            item.renderer.setSize(width,height);
+            item.scene = new THREE.Scene();
+            item.camera = new THREE.PerspectiveCamera(45, width/height, 2, 1000);
+            item.camera.position = new THREE.Vector3(10,10,10);
+            item.scene.add(item.camera);
+            item.controls = new THREE.TinyTrackballControls(item.camera, item.renderer.domElement);
+            item.controls.target.set(0, 0, 0);
+            //item.controls.noZoom = true;
+            //item.controls.noPan = true;
+            var loader = new THREE.OBJLoader();
+            loader.load( "http://demo.sagenb.org/home/jason3/41/cells/19/7d896242-71d8-474f-a706-9735ba721d12.obj", function ( object ) {
+                myobj=object.children[0];
+                var mesh = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, 
+                   [new THREE.MeshBasicMaterial({color: 0x6666ff}),
+                    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true, transparent: true, opacity: 0.5 } )] );
+                item.scene.add(mesh);
+             });
+    
+            // add the renderer to the document
+            div=document.getElementById("plot-7d896242-71d8-474f-a706-9735ba721d12")
+            if (div.firstChild) {
+                div.replaceChild(item.renderer.domElement,div.firstChild);
+            } else {
+                div.appendChild(item.renderer.domElement);
+            }
+        animate();
+    }
+    
+    function animate() {
+        /* one animation tick */
+        requestAnimationFrame(animate);
+        item.controls.update();
+        myrender();
+    }
+    
+    function myrender () {
+        /* renders our little scene */
+        item.renderer.render(item.scene, item.camera);
+    }
+    init()
+    },100);
+    </script></font></html>
+}}}
+
+{{{id=20|
+var('x,y')
+draw_plot(sphere()+plot3d(9-x^2-y^2,(x,-3,3),(y,-3,3))+plot3d(x^2+y^2,(x,-3,3),(y,-3,3)))
+///
+<html><font color='black'>
+    <div id="plot-1b256db0-652b-4f95-9da0-0add6e0dcc5d" style="width:700px;height:400px;border:solid 1px"></div>
+    <script>
+    setTimeout(function() {
+    // check capabilities, and start if sufficient
+    var haswebgl = (function() {try {return !! window.WebGLRenderingContext && 
+            !! document.createElement('canvas').getContext('experimental-webgl');}
+            catch(e){return false;}})();
+            
+    var hascanvas = !! window.CanvasRenderingContext2D;
+    
+    if(hascanvas) {
+        var contextR, contextW;
+        document.addEventListener( "DOMContentLoaded", init, false);
+    }
+    
+    var item = {};
+    function init() {
+        /* spawns the objects, scenes, cameras, renderers etc. */
+            // set the scene
+            var width = 700;
+            var height=400;
+            if (haswebgl) {
+                //item.renderer = new THREE.WebGLRenderer();
+                item.renderer = new THREE.WebGLRenderer({antialias:true});
+            } else {
+                item.renderer = new THREE.CanvasRenderer();
+            }
+            item.renderer.setSize(width,height);
+            item.scene = new THREE.Scene();
+            item.camera = new THREE.PerspectiveCamera(45, width/height, 2, 1000);
+            item.camera.position = new THREE.Vector3(10,10,10);
+            item.scene.add(item.camera);
+            item.controls = new THREE.TinyTrackballControls(item.camera, item.renderer.domElement);
+            item.controls.target.set(0, 0, 0);
+            //item.controls.noZoom = true;
+            //item.controls.noPan = true;
+            var loader = new THREE.OBJLoader();
+            loader.load( "http://demo.sagenb.org/home/jason3/41/cells/20/1b256db0-652b-4f95-9da0-0add6e0dcc5d.obj", function ( object ) {
+                myobj=object.children[0];
+                var mesh = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, 
+                   [new THREE.MeshBasicMaterial({color: 0x6666ff}),
+                    new THREE.MeshBasicMaterial({ color: 0x000000, wireframe: true, transparent: true, opacity: 0.5 } )] );
+                item.scene.add(mesh);
+             });
+    
+            // add the renderer to the document
+            div=document.getElementById("plot-1b256db0-652b-4f95-9da0-0add6e0dcc5d")
+            if (div.firstChild) {
+                div.replaceChild(item.renderer.domElement,div.firstChild);
+            } else {
+                div.appendChild(item.renderer.domElement);
+            }
+        animate();
+    }
+    
+    function animate() {
+        /* one animation tick */
+        requestAnimationFrame(animate);
+        item.controls.update();
+        myrender();
+    }
+    
+    function myrender () {
+        /* renders our little scene */
+        item.renderer.render(item.scene, item.camera);
+    }
+    init()
+    },100);
+    </script></font></html>
+}}}
+
+{{{id=21|
+
+///
+}}}
