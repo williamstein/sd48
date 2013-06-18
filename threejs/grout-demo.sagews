@@ -9,11 +9,11 @@
 
 <script src="https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js"></script>
 
-︡86030a2c-11da-4a86-be5e-5b7a8372036d︡{"html":"\n<script src=\"https://raw.github.com/mrdoob/three.js/master/build/three.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/loaders/OBJLoader.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js\"></script>"}︡
+︡3a454bb4-cfb8-4b05-bc26-73b626acd64d︡{"html":"\n<script src=\"https://raw.github.com/mrdoob/three.js/master/build/three.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/loaders/OBJLoader.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js\"></script>"}︡
 ︠7554c6b3-935c-4954-97dc-f17ca8e5a88d︠
 %var x y
 p = plot3d(sin(x*y),(x,-1,1), (y,-1,1))
-︡abf097f4-c8fa-46f6-adc6-6a095fe4bb0c︡
+︡52bd4b7a-93c7-4c2b-9d6f-ec537df63fad︡
 ︠2f8c5d9b-12f3-4c72-9b0c-a83c9b047868︠
 import os, uuid
 def render(p):
@@ -34,15 +34,15 @@ def render(p):
 
     # Display the object
     s = "d=$('#%s'); d.data('three', new window.ThreeJSobj('%s', d))"%(id, obj_url)
-    print s
+    #print s
     coffeescript(s)
 
     # TODO: what about garbage collection / memory leaks!?
 
-︡172db1f6-f6d6-40db-8698-390e46629384︡
-︠ab751bcd-1422-4979-9dd6-2f9c27e385c7︠
-render(p)
-︡71db7ee5-16f9-4ff3-a99f-ccf2425c2af5︡{"file":{"show":false,"uuid":"d88f3469-1096-4808-a57b-d3ef67e7f630","filename":"cfbb6c58-5bef-426f-8491-62201fa6880c.obj"}}︡{"html":"<div id=cfbb6c58-5bef-426f-8491-62201fa6880c style='border:1px solid black'>"}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"d=$('#cfbb6c58-5bef-426f-8491-62201fa6880c'); d.data('three', new window.ThreeJSobj('/blobs/cfbb6c58-5bef-426f-8491-62201fa6880c.obj?uuid=d88f3469-1096-4808-a57b-d3ef67e7f630', d))"},"once":true}︡{"stdout":"d=$('#cfbb6c58-5bef-426f-8491-62201fa6880c'); d.data('three', new window.ThreeJSobj('/blobs/cfbb6c58-5bef-426f-8491-62201fa6880c.obj?uuid=d88f3469-1096-4808-a57b-d3ef67e7f630', d))\n"}︡
+︡1317918d-6585-41ef-b778-9498aec53e8b︡
+︠f488d13e-3bf1-4bf9-aa35-7bce664b1c43o︠
+render(icosahedron())
+︡1afd26db-6deb-4a87-b7c9-8c1ece03a650︡{"file":{"show":false,"uuid":"1c455897-996f-4bed-8115-ee187feb39f9","filename":"772e76a9-8633-4587-8c9b-20f667d80569.obj"}}︡{"html":"<div id=772e76a9-8633-4587-8c9b-20f667d80569 style='border:1px solid black'>"}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"d=$('#772e76a9-8633-4587-8c9b-20f667d80569'); d.data('three', new window.ThreeJSobj('/blobs/772e76a9-8633-4587-8c9b-20f667d80569.obj?uuid=1c455897-996f-4bed-8115-ee187feb39f9', d))"},"once":true}︡
 ︠bdaeddc0-8560-4ec8-81b8-40667538ad77︠
 %coffeescript
 
@@ -59,11 +59,11 @@ class ThreeJSobj
         @camera = new THREE.PerspectiveCamera(45, width / height, 2, 1000)
         @camera.position = new THREE.Vector3(10, 10, 10)
         @scene.add(@camera)
-        @controls = new THREE.TinyTrackballControls(@camera, @renderer.domElement)
+        @controls = new THREE.TrackballControls(@camera, @renderer.domElement)
         @controls.target.set(0, 0, 0)
 
         loader = new THREE.OBJLoader()
-        loader.load @url, (object) ->
+        loader.load @url, (object) =>
             myobj = object.children[0]
             mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)
             mat2  = new THREE.MeshBasicMaterial
@@ -78,19 +78,19 @@ class ThreeJSobj
         $(@elt).empty().append(@renderer.domElement)
         @animate()
 
-    animate: () ->
+    animate: () =>
         # one animation tick
-        requestAnimationFrame(animate)
+        requestAnimationFrame(@animate)
         @controls.update()
         @myrender()
 
-    myrender: () ->
+    myrender: () =>
         # renders our scene
         @renderer.render(@scene, @camera)
 
 window.ThreeJSobj = ThreeJSobj
 
-︡88866fba-40b8-47a0-ba25-056bed4dbfd7︡{"obj":"{}","javascript":{"coffeescript":true,"code":"\nclass ThreeJSobj\n    constructor : (@url, @elt) ->\n        # Spawns the objects, scenes, cameras, renderers etc.\n        # set the scene\n        width = 700\n        height = 400\n        @renderer = new THREE.WebGLRenderer(antialias: true)\n\n        @renderer.setSize(width, height)\n        @scene = new THREE.Scene()\n        @camera = new THREE.PerspectiveCamera(45, width / height, 2, 1000)\n        @camera.position = new THREE.Vector3(10, 10, 10)\n        @scene.add(@camera)\n        @controls = new THREE.TinyTrackballControls(@camera, @renderer.domElement)\n        @controls.target.set(0, 0, 0)\n\n        loader = new THREE.OBJLoader()\n        loader.load @url, (object) ->\n            myobj = object.children[0]\n            mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)\n            mat2  = new THREE.MeshBasicMaterial\n                        color: 0x000000\n                        wireframe: true\n                        transparent: true\n                        opacity: 0.5\n            mesh  = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, [mat1, mat2])\n            @scene.add(mesh)\n\n        # add the renderer to the document\n        $(@elt).empty().append(@renderer.domElement)\n        @animate()\n\n    animate: () ->\n        # one animation tick\n        requestAnimationFrame(animate)\n        @controls.update()\n        @myrender()\n\n    myrender: () ->\n        # renders our scene\n        @renderer.render(@scene, @camera)\n\nwindow.ThreeJSobj = ThreeJSobj"},"once":true}︡
+︡239ee356-5822-46f2-a78a-97e0c50ca65b︡{"obj":"{}","javascript":{"coffeescript":true,"code":"\nclass ThreeJSobj\n    constructor : (@url, @elt) ->\n        # Spawns the objects, scenes, cameras, renderers etc.\n        # set the scene\n        width = 700\n        height = 400\n        console.log(1)\n        @renderer = new THREE.WebGLRenderer(antialias: true)\n\n        console.log(2)\n\n        @renderer.setSize(width, height)\n        @scene = new THREE.Scene()\n        @camera = new THREE.PerspectiveCamera(45, width / height, 2, 1000)\n        @camera.position = new THREE.Vector3(10, 10, 10)\n        @scene.add(@camera)\n        console.log(2.1)\n        @controls = new THREE.TrackballControls(@camera, @renderer.domElement)\n        console.log(2.2)\n        @controls.target.set(0, 0, 0)\n        console.log(3)\n\n        loader = new THREE.OBJLoader()\n        console.log(4)\n        loader.load @url, (object) =>\n            myobj = object.children[0]\n            mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)\n            mat2  = new THREE.MeshBasicMaterial\n                        color: 0x000000\n                        wireframe: true\n                        transparent: true\n                        opacity: 0.5\n            mesh  = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, [mat1, mat2])\n            @scene.add(mesh)\n\n        # add the renderer to the document\n        $(@elt).empty().append(@renderer.domElement)\n        console.log(5)\n        @animate()\n\n    animate: () =>\n        # one animation tick\n        requestAnimationFrame(@animate)\n        @controls.update()\n        @myrender()\n\n    myrender: () =>\n        # renders our scene\n        @renderer.render(@scene, @camera)\n\nwindow.ThreeJSobj = ThreeJSobj"},"once":true}︡
 ︠a09339b2-7c55-4ad2-b695-f6e5b32afabd︠
 
 ︠97e2718f-6b74-4cda-a83e-e5a0c90ab0b5︠
@@ -285,6 +285,6 @@ window.ThreeJSobj = ThreeJSobj
 
 
 		</script>
-︡38b6b3b6-5da3-48a9-8a83-6107843bd430︡{"html":"\n\t\t<div id=\"container\"></div>\n\t\t<div id=\"info\">\n\t\t\t<a href=\"http://threejs.org\" target=\"_blank\">three.js</a> - trackball controls example</br>\n\t\t\tMOVE mouse &amp; press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan\n\t\t</div>\n\n\t\t<!-- <script src=\"js/libs/stats.min.js\"></script> -->\n\n\t\t<script>\n\n\t\t\tif ( ! Detector.webgl ) Detector.addGetWebGLMessage();\n\n\t\t\tvar container, stats;\n\n\t\t\tvar camera, controls, scene, renderer;\n\n\t\t\tvar cross;\n\n\t\t\tinit();\n\t\t\tanimate();\n\n\t\t\tfunction init() {\n\n\t\t\t\tcamera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );\n\t\t\t\tcamera.position.z = 500;\n\n\t\t\t\tcontrols = new THREE.TrackballControls( camera );\n\n\t\t\t\tcontrols.rotateSpeed = 1.0;\n\t\t\t\tcontrols.zoomSpeed = 1.2;\n\t\t\t\tcontrols.panSpeed = 0.8;\n\n\t\t\t\tcontrols.noZoom = false;\n\t\t\t\tcontrols.noPan = false;\n\n\t\t\t\tcontrols.staticMoving = true;\n\t\t\t\tcontrols.dynamicDampingFactor = 0.3;\n\n\t\t\t\tcontrols.keys = [ 65, 83, 68 ];\n\n\t\t\t\tcontrols.addEventListener( 'change', render );\n\n\t\t\t\t// world\n\n\t\t\t\tscene = new THREE.Scene();\n\t\t\t\tscene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );\n\n\t\t\t\tvar geometry = new THREE.CylinderGeometry( 0, 10, 30, 4, 1 );\n\t\t\t\tvar material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading } );\n\n\t\t\t\tfor ( var i = 0; i < 500; i ++ ) {\n\n\t\t\t\t\tvar mesh = new THREE.Mesh( geometry, material );\n\t\t\t\t\tmesh.position.x = ( Math.random() - 0.5 ) * 1000;\n\t\t\t\t\tmesh.position.y = ( Math.random() - 0.5 ) * 1000;\n\t\t\t\t\tmesh.position.z = ( Math.random() - 0.5 ) * 1000;\n\t\t\t\t\tmesh.updateMatrix();\n\t\t\t\t\tmesh.matrixAutoUpdate = false;\n\t\t\t\t\tscene.add( mesh );\n\n\t\t\t\t}\n\n\n\t\t\t\t// lights\n\n\t\t\t\tlight = new THREE.DirectionalLight( 0xffffff );\n\t\t\t\tlight.position.set( 1, 1, 1 );\n\t\t\t\tscene.add( light );\n\n\t\t\t\tlight = new THREE.DirectionalLight( 0x002288 );\n\t\t\t\tlight.position.set( -1, -1, -1 );\n\t\t\t\tscene.add( light );\n\n\t\t\t\tlight = new THREE.AmbientLight( 0x222222 );\n\t\t\t\tscene.add( light );\n\n\n\t\t\t\t// renderer\n\n\t\t\t\trenderer = new THREE.WebGLRenderer( { antialias: false } );\n\t\t\t\trenderer.setClearColor( scene.fog.color, 1 );\n\t\t\t\trenderer.setSize( window.innerWidth, window.innerHeight );\n\n\t\t\t\tcontainer = document.getElementById( 'container' );\n\t\t\t\tcontainer.appendChild( renderer.domElement );\n\n\t\t\t\tstats = new Stats();\n\t\t\t\tstats.domElement.style.position = 'absolute';\n\t\t\t\tstats.domElement.style.top = '0px';\n\t\t\t\tstats.domElement.style.zIndex = 100;\n\t\t\t\tcontainer.appendChild( stats.domElement );\n\n\t\t\t\t//\n\n\t\t\t\twindow.addEventListener( 'resize', onWindowResize, false );\n\n\t\t\t}\n\n\t\t\tfunction onWindowResize() {\n\n\t\t\t\tcamera.aspect = window.innerWidth / window.innerHeight;\n\t\t\t\tcamera.updateProjectionMatrix();\n\n\t\t\t\trenderer.setSize( window.innerWidth, window.innerHeight );\n\n\t\t\t\tcontrols.handleResize();\n\n\t\t\t\trender();\n\n\t\t\t}\n\n\t\t\tfunction animate() {\n\n\t\t\t\trequestAnimationFrame( animate );\n\t\t\t\tcontrols.update();\n\n\t\t\t}\n\n\t\t\tfunction render() {\n\n\t\t\t\trenderer.render( scene, camera );\n\t\t\t\tstats.update();\n\n\t\t\t}\n\n\n\t\t</script>"}︡
+︡6ec73a58-9c93-4dcc-a1ff-7d0e769731d2︡{"html":"\n\t\t<div id=\"container\"></div>\n\t\t<div id=\"info\">\n\t\t\t<a href=\"http://threejs.org\" target=\"_blank\">three.js</a> - trackball controls example\n\t\t\tMOVE mouse &amp; press LEFT/A: rotate, MIDDLE/S: zoom, RIGHT/D: pan\n\t\t</div>\n\n\t\t<!-- <script src=\"js/libs/stats.min.js\"></script> -->\n\n\t\t<script>\n\n\t\t\tif ( ! Detector.webgl ) Detector.addGetWebGLMessage();\n\n\t\t\tvar container, stats;\n\n\t\t\tvar camera, controls, scene, renderer;\n\n\t\t\tvar cross;\n\n\t\t\tinit();\n\t\t\tanimate();\n\n\t\t\tfunction init() {\n\n\t\t\t\tcamera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );\n\t\t\t\tcamera.position.z = 500;\n\n\t\t\t\tcontrols = new THREE.TrackballControls( camera );\n\n\t\t\t\tcontrols.rotateSpeed = 1.0;\n\t\t\t\tcontrols.zoomSpeed = 1.2;\n\t\t\t\tcontrols.panSpeed = 0.8;\n\n\t\t\t\tcontrols.noZoom = false;\n\t\t\t\tcontrols.noPan = false;\n\n\t\t\t\tcontrols.staticMoving = true;\n\t\t\t\tcontrols.dynamicDampingFactor = 0.3;\n\n\t\t\t\tcontrols.keys = [ 65, 83, 68 ];\n\n\t\t\t\tcontrols.addEventListener( 'change', render );\n\n\t\t\t\t// world\n\n\t\t\t\tscene = new THREE.Scene();\n\t\t\t\tscene.fog = new THREE.FogExp2( 0xcccccc, 0.002 );\n\n\t\t\t\tvar geometry = new THREE.CylinderGeometry( 0, 10, 30, 4, 1 );\n\t\t\t\tvar material =  new THREE.MeshLambertMaterial( { color:0xffffff, shading: THREE.FlatShading } );\n\n\t\t\t\tfor ( var i = 0; i < 500; i ++ ) {\n\n\t\t\t\t\tvar mesh = new THREE.Mesh( geometry, material );\n\t\t\t\t\tmesh.position.x = ( Math.random() - 0.5 ) * 1000;\n\t\t\t\t\tmesh.position.y = ( Math.random() - 0.5 ) * 1000;\n\t\t\t\t\tmesh.position.z = ( Math.random() - 0.5 ) * 1000;\n\t\t\t\t\tmesh.updateMatrix();\n\t\t\t\t\tmesh.matrixAutoUpdate = false;\n\t\t\t\t\tscene.add( mesh );\n\n\t\t\t\t}\n\n\n\t\t\t\t// lights\n\n\t\t\t\tlight = new THREE.DirectionalLight( 0xffffff );\n\t\t\t\tlight.position.set( 1, 1, 1 );\n\t\t\t\tscene.add( light );\n\n\t\t\t\tlight = new THREE.DirectionalLight( 0x002288 );\n\t\t\t\tlight.position.set( -1, -1, -1 );\n\t\t\t\tscene.add( light );\n\n\t\t\t\tlight = new THREE.AmbientLight( 0x222222 );\n\t\t\t\tscene.add( light );\n\n\n\t\t\t\t// renderer\n\n\t\t\t\trenderer = new THREE.WebGLRenderer( { antialias: false } );\n\t\t\t\trenderer.setClearColor( scene.fog.color, 1 );\n\t\t\t\trenderer.setSize( window.innerWidth, window.innerHeight );\n\n\t\t\t\tcontainer = document.getElementById( 'container' );\n\t\t\t\tcontainer.appendChild( renderer.domElement );\n\n\t\t\t\tstats = new Stats();\n\t\t\t\tstats.domElement.style.position = 'absolute';\n\t\t\t\tstats.domElement.style.top = '0px';\n\t\t\t\tstats.domElement.style.zIndex = 100;\n\t\t\t\tcontainer.appendChild( stats.domElement );\n\n\t\t\t\t//\n\n\t\t\t\twindow.addEventListener( 'resize', onWindowResize, false );\n\n\t\t\t}\n\n\t\t\tfunction onWindowResize() {\n\n\t\t\t\tcamera.aspect = window.innerWidth / window.innerHeight;\n\t\t\t\tcamera.updateProjectionMatrix();\n\n\t\t\t\trenderer.setSize( window.innerWidth, window.innerHeight );\n\n\t\t\t\tcontrols.handleResize();\n\n\t\t\t\trender();\n\n\t\t\t}\n\n\t\t\tfunction animate() {\n\n\t\t\t\trequestAnimationFrame( animate );\n\t\t\t\tcontrols.update();\n\n\t\t\t}\n\n\t\t\tfunction render() {\n\n\t\t\t\trenderer.render( scene, camera );\n\t\t\t\tstats.update();\n\n\t\t\t}\n\n\n\t\t</script>"}︡
 ︠b6129cfb-6982-49b1-b1aa-d8fe685a8316︠
 
