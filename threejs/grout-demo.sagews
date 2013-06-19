@@ -1,4 +1,5 @@
-︠26dcf45b-40d9-4f64-8767-a275c1cd6588︠
+︠26dcf45b-40d9-4f64-8767-a275c1cd6588a︠
+%auto
 %html(hide=False)
 
 <script src="https://raw.github.com/mrdoob/three.js/master/build/three.js"></script>
@@ -9,7 +10,7 @@
 
 <script src="https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js"></script>
 
-︡3a454bb4-cfb8-4b05-bc26-73b626acd64d︡{"html":"\n<script src=\"https://raw.github.com/mrdoob/three.js/master/build/three.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/loaders/OBJLoader.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js\"></script>"}︡
+︡c6a092f0-d14f-4f8b-82e5-ab241529f0e6︡{"auto":true}︡{"html":"\n<script src=\"https://raw.github.com/mrdoob/three.js/master/build/three.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/loaders/OBJLoader.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/controls/TrackballControls.js\"></script>\n\n<script src=\"https://raw.github.com/mrdoob/three.js/master/examples/js/Detector.js\"></script>"}︡
 ︠7554c6b3-935c-4954-97dc-f17ca8e5a88d︠
 %var x y
 p = plot3d(sin(x*y),(x,-1,1), (y,-1,1))
@@ -39,11 +40,26 @@ def render(p):
 
     # TODO: what about garbage collection / memory leaks!?
 
-︡1317918d-6585-41ef-b778-9498aec53e8b︡
-︠f488d13e-3bf1-4bf9-aa35-7bce664b1c43o︠
-render(icosahedron())
-︡1afd26db-6deb-4a87-b7c9-8c1ece03a650︡{"file":{"show":false,"uuid":"1c455897-996f-4bed-8115-ee187feb39f9","filename":"772e76a9-8633-4587-8c9b-20f667d80569.obj"}}︡{"html":"<div id=772e76a9-8633-4587-8c9b-20f667d80569 style='border:1px solid black'>"}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"d=$('#772e76a9-8633-4587-8c9b-20f667d80569'); d.data('three', new window.ThreeJSobj('/blobs/772e76a9-8633-4587-8c9b-20f667d80569.obj?uuid=1c455897-996f-4bed-8115-ee187feb39f9', d))"},"once":true}︡
-︠bdaeddc0-8560-4ec8-81b8-40667538ad77︠
+︡b4ec7e7e-3df8-4315-a11b-85c078279cfe︡
+︠73330e71-3489-4e2a-8ebf-9ff1b88dfa08︠
+%var x y z
+T = RDF(golden_ratio)
+p = 2 - (cos(x + T*y) + cos(x - T*y) + cos(y + T*z) + cos(y - T*z) + cos(z - T*x) + cos(z + T*x))
+r = 4.77
+render(implicit_plot3d(p, (x, -r, r), (y, -r, r), (z, -r, r), plot_points=40))
+︡56278815-289f-4069-9fe8-7b73893f828d︡{"file":{"show":false,"uuid":"ea80ae79-72db-4cdb-905c-a064f49b79bb","filename":"9cdf8201-8eff-4f2c-8bfd-1da8b812df93.obj"}}︡{"html":"<div id=9cdf8201-8eff-4f2c-8bfd-1da8b812df93 style='border:1px solid black'>"}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"d=$('#9cdf8201-8eff-4f2c-8bfd-1da8b812df93'); d.data('three', new window.ThreeJSobj('/blobs/9cdf8201-8eff-4f2c-8bfd-1da8b812df93.obj?uuid=ea80ae79-72db-4cdb-905c-a064f49b79bb', d))"},"once":true}︡
+︠ff19da1c-acd6-4821-8c80-9958670be614︠
+g = sum(sphere(center=(0,0,0)).scale(0.2).translate(randint(0,4),randint(0,4),randint(0,4)) for i in [1..10])
+render(g)
+︡234527e4-650b-44bb-a531-91ae0a5e8056︡{"file":{"show":false,"uuid":"62d85276-9895-4250-b4e6-e4d9cbe1352a","filename":"f87e01ab-4dd2-406b-bfda-6417e6efa716.obj"}}︡{"html":"<div id=f87e01ab-4dd2-406b-bfda-6417e6efa716 style='border:1px solid black'>"}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"d=$('#f87e01ab-4dd2-406b-bfda-6417e6efa716'); d.data('three', new window.ThreeJSobj('/blobs/f87e01ab-4dd2-406b-bfda-6417e6efa716.obj?uuid=62d85276-9895-4250-b4e6-e4d9cbe1352a', d))"},"once":true}︡
+︠38ba7426-7756-4e06-9830-3d52d243f5e8︠
+p = polygon3d([[0,0,0], [1,2,3], [3,0,0]])
+q = polygon3d([[0,0,0], [-1,-2,-3], [-3,0,0]])
+g = p+q
+render(g)
+︡34e67610-9982-4e38-98fd-c2864d45de7a︡{"file":{"show":false,"uuid":"53be003d-e70e-4c91-93ae-7a7a8afc1d8b","filename":"5faae570-1f56-446f-8e69-6be7b755449c.obj"}}︡{"html":"<div id=5faae570-1f56-446f-8e69-6be7b755449c style='border:1px solid black'>"}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"d=$('#5faae570-1f56-446f-8e69-6be7b755449c'); d.data('three', new window.ThreeJSobj('/blobs/5faae570-1f56-446f-8e69-6be7b755449c.obj?uuid=53be003d-e70e-4c91-93ae-7a7a8afc1d8b', d))"},"once":true}︡
+︠bdaeddc0-8560-4ec8-81b8-40667538ad77a︠
+%auto
 %coffeescript
 
 class ThreeJSobj
@@ -64,15 +80,15 @@ class ThreeJSobj
 
         loader = new THREE.OBJLoader()
         loader.load @url, (object) =>
-            myobj = object.children[0]
-            mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)
-            mat2  = new THREE.MeshBasicMaterial
-                        color: 0x000000
-                        wireframe: true
-                        transparent: true
-                        opacity: 0.5
-            mesh  = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, [mat1, mat2])
-            @scene.add(mesh)
+            for myobj in object.children
+                mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)
+                mat2  = new THREE.MeshBasicMaterial
+                            color: 0x000000
+                            wireframe: true
+                            transparent: true
+                            opacity: 0.5
+                mesh  = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, [mat1, mat2])
+                @scene.add(mesh)
 
         # add the renderer to the document
         $(@elt).empty().append(@renderer.domElement)
@@ -90,9 +106,10 @@ class ThreeJSobj
 
 window.ThreeJSobj = ThreeJSobj
 
-︡239ee356-5822-46f2-a78a-97e0c50ca65b︡{"obj":"{}","javascript":{"coffeescript":true,"code":"\nclass ThreeJSobj\n    constructor : (@url, @elt) ->\n        # Spawns the objects, scenes, cameras, renderers etc.\n        # set the scene\n        width = 700\n        height = 400\n        console.log(1)\n        @renderer = new THREE.WebGLRenderer(antialias: true)\n\n        console.log(2)\n\n        @renderer.setSize(width, height)\n        @scene = new THREE.Scene()\n        @camera = new THREE.PerspectiveCamera(45, width / height, 2, 1000)\n        @camera.position = new THREE.Vector3(10, 10, 10)\n        @scene.add(@camera)\n        console.log(2.1)\n        @controls = new THREE.TrackballControls(@camera, @renderer.domElement)\n        console.log(2.2)\n        @controls.target.set(0, 0, 0)\n        console.log(3)\n\n        loader = new THREE.OBJLoader()\n        console.log(4)\n        loader.load @url, (object) =>\n            myobj = object.children[0]\n            mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)\n            mat2  = new THREE.MeshBasicMaterial\n                        color: 0x000000\n                        wireframe: true\n                        transparent: true\n                        opacity: 0.5\n            mesh  = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, [mat1, mat2])\n            @scene.add(mesh)\n\n        # add the renderer to the document\n        $(@elt).empty().append(@renderer.domElement)\n        console.log(5)\n        @animate()\n\n    animate: () =>\n        # one animation tick\n        requestAnimationFrame(@animate)\n        @controls.update()\n        @myrender()\n\n    myrender: () =>\n        # renders our scene\n        @renderer.render(@scene, @camera)\n\nwindow.ThreeJSobj = ThreeJSobj"},"once":true}︡
+︡5a7cba68-81b7-4b1a-ae12-95fccbd089e4︡{"auto":true}︡{"obj":"{}","javascript":{"coffeescript":true,"code":"\nclass ThreeJSobj\n    constructor : (@url, @elt) ->\n        # Spawns the objects, scenes, cameras, renderers etc.\n        # set the scene\n        width = 700\n        height = 400\n        @renderer = new THREE.WebGLRenderer(antialias: true)\n\n        @renderer.setSize(width, height)\n        @scene = new THREE.Scene()\n        @camera = new THREE.PerspectiveCamera(45, width / height, 2, 1000)\n        @camera.position = new THREE.Vector3(10, 10, 10)\n        @scene.add(@camera)\n        @controls = new THREE.TrackballControls(@camera, @renderer.domElement)\n        @controls.target.set(0, 0, 0)\n\n        loader = new THREE.OBJLoader()\n        loader.load @url, (object) =>\n            for myobj in object.children\n                mat1  = new THREE.MeshBasicMaterial(color: 0x6666ff)\n                mat2  = new THREE.MeshBasicMaterial\n                            color: 0x000000\n                            wireframe: true\n                            transparent: true\n                            opacity: 0.5\n                mesh  = new THREE.SceneUtils.createMultiMaterialObject(myobj.geometry, [mat1, mat2])\n                @scene.add(mesh)\n\n        # add the renderer to the document\n        $(@elt).empty().append(@renderer.domElement)\n        @animate()\n\n    animate: () =>\n        # one animation tick\n        requestAnimationFrame(@animate)\n        @controls.update()\n        @myrender()\n\n    myrender: () =>\n        # renders our scene\n        @renderer.render(@scene, @camera)\n\nwindow.ThreeJSobj = ThreeJSobj"},"once":true}︡
 ︠a09339b2-7c55-4ad2-b695-f6e5b32afabd︠
 
+︡48a5cebb-0660-461a-a637-9fd7c4e4eee6︡
 ︠97e2718f-6b74-4cda-a83e-e5a0c90ab0b5︠
 
 

@@ -15,7 +15,7 @@
 ︡631d76d3-c376-4093-ab7a-e4683a159766︡{"html":"<h2>Diagram</h2>\n\n<p><a href=\"http://sketchboard.me/zyjdkavkLucN\">http://sketchboard.me/zyjdkavkLucN</a></p>\n\n<p><img src=\"http://www.aegisengineering.com/wp-content/uploads/2012/12/UW-Tower2.jpg\"></p>\n"}︡
 ︠a9573dd4-c293-4dd9-9aac-c4358f2f6c54︠
 salvus.file("arch.png")
-︡91beab5b-2d5d-4506-9350-5f88c36c5b0b︡{"file":{"show":true,"uuid":"bff074c3-20b0-4dfc-8b7e-c8cca09e9c73","filename":"arch.png"}}︡
+︡9c53edc7-3015-46bf-8736-d0e840349a79︡{"file":{"show":true,"uuid":"bff074c3-20b0-4dfc-8b7e-c8cca09e9c73","filename":"arch.png"}}︡
 ︠620fffc0-a29e-406b-83b4-58443c961217i︠
 %md
 ## Design Goals
@@ -28,7 +28,7 @@ salvus.file("arch.png")
 
  - **No SPOF's** No single points of failure
 
- - **Safety** User should have access to their data, and not loose work
+ - **Safety** User should have access to their data, and not lose work
 
 
 **Status:** None have been reached yet.
@@ -40,7 +40,15 @@ salvus.file("arch.png")
 
 
 
-︡68fc6447-f199-45b9-b69f-10dcc21718f5︡{"html":"<h2>Design Goals</h2>\n\n<ul>\n<li><p><strong>Scalability</strong> Scale to one million users (10,000 at once)</p>\n\n<ul>\n<li><p>Ads are illegal, so services can&#8217;t be free at that level.</p></li>\n<li><p>All components must be asynchronous and horizontally scalable.</p></li>\n</ul></li>\n<li><p><strong>No SPOF&#8217;s</strong> No single points of failure</p></li>\n<li><p><strong>Safety</strong> User should have access to their data, and not loose work</p></li>\n</ul>\n\n<p><strong>Status:</strong> None have been reached yet.</p>\n"}︡
+
+
+
+
+
+
+
+
+︡0c6957f9-0c2d-4ecc-805c-ddd6161b66a4︡{"html":"<h2>Design Goals</h2>\n\n<ul>\n<li><p><strong>Scalability</strong> Scale to one million users (10,000 at once)</p>\n\n<ul>\n<li><p>Ads are illegal, so services can&#8217;t be free at that level.</p></li>\n<li><p>All components must be asynchronous and horizontally scalable.</p></li>\n</ul></li>\n<li><p><strong>No SPOF&#8217;s</strong> No single points of failure</p></li>\n<li><p><strong>Safety</strong> User should have access to their data, and not lose work</p></li>\n</ul>\n\n<p><strong>Status:</strong> None have been reached yet.</p>\n"}︡
 ︠32c0f202-49a5-4bc4-8385-9ee8a47ce717i︠
 %md
 ## Technology
@@ -64,6 +72,13 @@ salvus.file("arch.png")
  - Sage server: a new Python program I wrote (forking tcp socket server with a token for access)
 
  - PTY server: a node.js program that supports text terminals.
+
+
+
+
+
+
+
 
 
 
@@ -121,6 +136,14 @@ salvus.file("arch.png")
 
 
 
+
+
+
+
+
+
+
+
 ︡496aeab3-d63a-4c86-994d-3303a8f1b66d︡{"html":"<h2>Code</h2>\n\n<ul>\n<li><p>Python for Sage-related stuff and admin/deployment/control</p></li>\n<li><p>Node.js / CoffeeScript for everything else</p></li>\n<li><p>At this point, every single line of code was written by me.</p></li>\n</ul>\n\n<h3>License</h3>\n\n<ul>\n<li><p>Some Python code is GPL&#8217;d since it imports things from Sage.</p></li>\n<li><p>Some Python code could be BSD licensed, but I haven&#8217;t sorted that out yet.</p></li>\n<li><p>The localhub CoffeeScript code is BSD licensed.</p></li>\n<li><p>Everything else is closed source right now, including the client code.</p></li>\n</ul>\n\n<h3>Size</h3>\n\n<pre><code>~/salvus/salvus\\$ cat *.py *.coffee page/*.coffee page/*.html page/*.css |wc -l\n39640\n\n~/salvus/salvus\\$ cat *.py |wc -l\n7307\n</code></pre>\n"}︡
 ︠0b91566f-f0e0-4d9b-b291-4d5355130cb2i︠
 %md
@@ -146,7 +169,17 @@ salvus.file("arch.png")
     - nice view of documentation (introspection)
 
 
+
+
+
+
+
+
+
+
 ︡7e7337d7-432b-49ff-88d1-46dc2de54f2a︡{"html":"<h2>Comparison with sagenb</h2>\n\n<h3>Missing Features (sagenb has these, but cloud.sagemath doesn&#8217;t)</h3>\n\n<ul>\n<li><p>Completely open source (GPL)</p></li>\n<li><p>Documentation</p></li>\n<li><p>Interactive 3d graphics</p></li>\n<li><p>Public browsing of projects (like publishing a worksheet)</p></li>\n<li><p>Import and export of Sage worksheets (sws files)</p></li>\n<li><p>Many little things:</p>\n\n<ul>\n<li>handling large output</li>\n<li>general optimization of the worksheet</li>\n<li>nice view of documentation (introspection)</li>\n</ul></li>\n</ul>\n"}︡
+︠d90cf02f-7644-455f-a598-bb0625d7d440︠
+sin(
 ︠bfb9306b-37a0-479f-b445-c52aeddafd89i︠
 
 %md
