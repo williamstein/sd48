@@ -43,6 +43,8 @@ Longterm = by September <i class="icon-smile"></i>; I've been working on this pr
 
 - Everything optional that I can think of is installed
 
+- Snapshots
 
-︡6b50da77-1e77-4c5c-870c-bc5cd2b2d333︡{"html":"<h2>Demo</h2>\n\n<ul>\n<li><p>Create an account</p></li>\n<li><p>Create a project</p></li>\n<li><p>Create a worksheet and do 2+2, then a plot, then an interact</p></li>\n<li><p>Create a .tex file and edit</p></li>\n<li><p>Upload file from my computer</p></li>\n<li><p>Login with another account and share a project</p></li>\n<li><p>Terminal; do some unix commands, vim, emacs, run sage, git clone a repo</p></li>\n<li><p>Everything optional that I can think of is installed</p></li>\n</ul>\n"}︡
+
+︡a62bc2c0-f048-4e4f-87b4-98af8fc5edd1︡{"html":"<h2>Demo</h2>\n\n<ul>\n<li><p>Create an account</p></li>\n<li><p>Create a project</p></li>\n<li><p>Create a worksheet and do 2+2, then a plot, then an interact</p></li>\n<li><p>Create a .tex file and edit</p></li>\n<li><p>Upload file from my computer</p></li>\n<li><p>Login with another account and share a project</p></li>\n<li><p>Terminal; do some unix commands, vim, emacs, run sage, git clone a repo</p></li>\n<li><p>Everything optional that I can think of is installed</p></li>\n<li><p>Snapshots</p></li>\n</ul>\n"}︡
 ︠12d9f48e-2160-4acc-91f5-964eb724abed︠
