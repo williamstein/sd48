@@ -21,8 +21,10 @@
 
 - Replace <http://sagenb.org>
 
+- Way to do Sage development online.
+
 Longterm = by September <i class="icon-smile"></i>; I've been working on this project nearly fulltime for almost a year now.
-︡625035d2-f8a9-4f92-9464-8e937f077ea0︡{"html":"<h2>Longterm Goals of <a href=\"https://cloud.sagemath.com\">https://cloud.sagemath.com</a></h2>\n\n<ul>\n<li><p>Make it easy for <em>everybody</em> with an Internet connection to fully use Sage (and all components) on their device of choice</p></li>\n<li><p>Bring Sage users together &#8211; online sharing, collaboration tools, publication tools (much like github + google docs).</p></li>\n<li><p>Premium options &#8211; pay somebody instead of setting up your own dedicated server to guarantee speed/space; profits go to support Sage development</p></li>\n<li><p>Replace <a href=\"http://sagenb.org\">http://sagenb.org</a></p></li>\n</ul>\n\n<p>Longterm = by September <i class=\"icon-smile\"></i>; I&#8217;ve been working on this project nearly fulltime for almost a year now.</p>\n"}︡
+︡68df6204-009a-465b-8304-faa4d59c1212︡{"html":"<h2>Longterm Goals of <a href=\"https://cloud.sagemath.com\">https://cloud.sagemath.com</a></h2>\n\n<ul>\n<li><p>Make it easy for <em>everybody</em> with an Internet connection to fully use Sage (and all components) on their device of choice</p></li>\n<li><p>Bring Sage users together &#8211; online sharing, collaboration tools, publication tools (much like github + google docs).</p></li>\n<li><p>Premium options &#8211; pay somebody instead of setting up your own dedicated server to guarantee speed/space; profits go to support Sage development</p></li>\n<li><p>Replace <a href=\"http://sagenb.org\">http://sagenb.org</a></p></li>\n<li><p>Way to do Sage development online. </p></li>\n</ul>\n\n<p>Longterm = by September <i class=\"icon-smile\"></i>; I&#8217;ve been working on this project nearly fulltime for almost a year now.</p>\n"}︡
 ︠95a0f3d1-74c3-4cb9-b41f-2b650f726b11i︠
 %md
 ## Demo
@@ -47,4 +49,14 @@ Longterm = by September <i class="icon-smile"></i>; I've been working on this pr
 
 
 ︡a62bc2c0-f048-4e4f-87b4-98af8fc5edd1︡{"html":"<h2>Demo</h2>\n\n<ul>\n<li><p>Create an account</p></li>\n<li><p>Create a project</p></li>\n<li><p>Create a worksheet and do 2+2, then a plot, then an interact</p></li>\n<li><p>Create a .tex file and edit</p></li>\n<li><p>Upload file from my computer</p></li>\n<li><p>Login with another account and share a project</p></li>\n<li><p>Terminal; do some unix commands, vim, emacs, run sage, git clone a repo</p></li>\n<li><p>Everything optional that I can think of is installed</p></li>\n<li><p>Snapshots</p></li>\n</ul>\n"}︡
-︠12d9f48e-2160-4acc-91f5-964eb724abed︠
+︠12d9f48e-2160-4acc-91f5-964eb724abedi︠
+%md
+## Status
+
+- Much works remains!  Missing features, bugs, etc.
+
+- I encourage serious use now.  Despite bugs, there is a snapshot feature so you are unlikely to loose work.  Also, the uptime is much better than <http://sagenb.org>.
+
+- There are 757 user accounts right now.
+︡1216d62c-c75b-4243-8fd4-6322942ae1b0︡{"html":"<h2>Status</h2>\n\n<ul>\n<li><p>Much works remains!  Missing features, bugs, etc.</p></li>\n<li><p>I encourage serious use now.  Despite bugs, there is a snapshot feature so you are unlikely to loose work.  Also, the uptime is much better than <a href=\"http://sagenb.org\">http://sagenb.org</a>.</p></li>\n<li><p>There are 757 user accounts right now.</p></li>\n</ul>\n"}︡
+︠afa64b55-95f0-491e-8072-f5ad82cd634b︠
